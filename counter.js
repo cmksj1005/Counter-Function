@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Function to run the counter animation
   let isIncreasing = true;
+
   const startCounter = (counter) => {
     const from = parseInt(counter.getAttribute('data-from'), 10);
     const to = parseInt(counter.getAttribute('data-to'), 10);
@@ -60,24 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const startExtraCounter = (extraCounter) => {
     const data = parseInt(extraCounter.getAttribute('data'), 10);
     let extraNum = 0;
+
     const extraStep = () => {
       if (extraNum >= 999) {
         extraNum = 0;
       }
       extraNum += 111;
       extraCounter.textContent = extraNum;
+
       setTimeout(extraStep, 1); // if you want to adjust animation speed for '000' counter, change this number.
 
-      if (isIncreasing === false) {
+      if (!isIncreasing) {
         if (Number.isNaN(data) || data == 0) {
           extraCounter.textContent = '000';
         } else {
           extraCounter.textContent = data;
         }
-
         return;
       }
     };
+
     extraStep();
   };
 
