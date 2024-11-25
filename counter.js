@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const to = parseInt(counter.getAttribute('data-to'), 10);
     const time = parseInt(counter.getAttribute('data-time'), 10);
     const isDecimalNum = parseInt(counter.getAttribute('isDecimalNum'), 10);
+    const exponent = parseInt(counter.getAttribute('exponent'), 10);
 
     let current = from;
     const range = to - from;
 
+    //To check if the counter value should be decreased
     const isNegative = () => {
       if (Math.sign(range) == -1) {
         return true;
@@ -24,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      //To check if the counter value should be decimal number
       if (isDecimalNum === 1) {
         let increment;
         if (isNegative() === true) {
-          increment = -0.1;
+          increment = -Math.pow(10, -exponent);
         } else {
-          increment = 0.1;
+          increment = Math.pow(10, -exponent);
         }
-
         current += increment;
-        counter.textContent = parseFloat(current.toFixed(1));
+        counter.textContent = parseFloat(current.toFixed(exponent));
       } else {
         if (isNegative() === true) {
           increment = -1;
@@ -41,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
           increment = 1;
         }
         current += increment;
-
         counter.textContent = current;
       }
 
@@ -53,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     step();
-    console.log(isIncreasing);
   };
 
-  // 추가 코드
+  // Created an additional '000' counter to simulate faster counter animation
   const startExtraCounter = (extraCounter) => {
+    const data = parseInt(extraCounter.getAttribute('data'), 10);
     let extraNum = 0;
     const extraStep = () => {
       if (extraNum >= 999) {
@@ -65,10 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       extraNum += 111;
       extraCounter.textContent = extraNum;
-      setTimeout(extraStep, 10);
+      setTimeout(extraStep, 1); // if you want to adjust animation speed for '000' counter, change this number.
 
       if (isIncreasing === false) {
-        extraCounter.textContent = '000';
+        if (Number.isNaN(data) || data == 0) {
+          extraCounter.textContent = '000';
+        } else {
+          extraCounter.textContent = data;
+        }
+
         return;
       }
     };
@@ -98,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         counter.classList.add('started'); // Mark as started to prevent rerun
       }
     });
-    // 추가 코드
+
     extraCounters.forEach((extraCounter) => {
-      // Check if the counter is in the viewport and hasn't started yet
+      // Check if the extraCounter is in the viewport and hasn't started yet
       if (
         isInViewport(extraCounter) &&
         !extraCounter.classList.contains('started')

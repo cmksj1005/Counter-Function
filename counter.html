@@ -193,96 +193,116 @@
       quis, accumsan porttitor, facilisis luctus, metus
     </p>
 
-    <!--Change data-time value, if you want to adjust the animation speed.-->
-    <!--For testing, I entered 400000 in the third counter. So it is much slower.-->
-    <!-- <br />Count from 0 to 100 <br />
+    <p>
+      <strong
+        >This counter activates as soon as it becomes visible to the
+        user.</strong
+      >
+    </p>
+
+    <!-- Change 'data-time' value to adjust the speed of the counter // 1 == 1 millisecond -->
+    You can adjust the speed of the counter<br />
     <span
       class="counter"
       data-from="0"
-      data-to="-100"
+      data-to="10000"
       data-time="1"
       isDecimalNum="0"
+      exponent="0"
     ></span>
-    <br />You don't necessarily have to start at 0 <br />
+    <br />
+    <span
+      class="counter"
+      data-from="0"
+      data-to="10000"
+      data-time="10"
+      isDecimalNum="0"
+      exponent="0"
+    ></span>
+    <br />
+    <span
+      class="counter"
+      data-from="0"
+      data-to="10000"
+      data-time="1000"
+      isDecimalNum="0"
+      exponent="0"
+    ></span>
+    <br />
+
+    <!-- For using decimal number, 'isDecimalNum' value should be 1 // 'exponent' value means decimal place -->
+    <br />You can use decimal number<br />
+    <span
+      class="counter"
+      data-from="1"
+      data-to="1000"
+      data-time="10"
+      isDecimalNum="1"
+      exponent="1"
+    ></span>
+    <br />
+    <span
+      class="counter"
+      data-from="1"
+      data-to="1000"
+      data-time="10"
+      isDecimalNum="1"
+      exponent="2"
+    ></span>
+    <br />
+    <span
+      class="counter"
+      data-from="1"
+      data-to="1000"
+      data-time="10"
+      isDecimalNum="1"
+      exponent="3"
+    ></span>
+    <br />
+
+    <br />You can also count in reverse
+    <br />
     <span
       class="counter"
       data-from="1000"
-      data-to="2024"
-      data-time="1"
-      isDecimalNum="0"
-    ></span>
-    <br />You can also count in reverse
-    <strong>(It is slower than below.)</strong>
-    <br />
-    <span
-      class="counter"
-      data-from="9999"
       data-to="0"
-      data-time="1"
+      data-time="100"
       isDecimalNum="0"
     ></span>
-    <br />You can also count in reverse
     <br />
-    <span
-      class="counter"
-      data-from="9999"
-      data-to="0"
-      data-time="1"
-      isDecimalNum="0"
-    ></span>
+
     <br />or even to negative values <br />
     <span
       class="counter"
       data-from="0"
       data-to="-1000"
-      data-time="1000"
+      data-time="100"
       isDecimalNum="0"
     ></span>
-    <br />test extra Counter <br />
+    <br />
 
+    <!-- 'extraCounter' class is used to display an increasing '000' counter at the end of the main counter -->
+    <br />If you want to use bigger number, you can use 'extraCounter' class
+    <br />
     <span
       class="counter"
       data-from="0"
       data-to="116"
       data-time="50"
       isDecimalNum="0"
-    ></span> -->
-
-    <br />test 1 <br />
-    <div
-      class="counter"
-      data-from="1"
-      data-to="55000"
-      data-time="0"
-      isDecimalNum="0"
-    ></div>
+    ></span
+    >,<span class="extraCounter" data="000"></span>
     <br />
-    <br />test 2 <br />
-    <div
-      class="counter"
-      data-from="9999"
-      data-to="0"
-      data-time="10"
-      isDecimalNum="0"
-    ></div>
-    <br />
-    <br />test 3 <br />
-    <div
-      class="counter"
-      data-from="9999"
-      data-to="0"
-      data-time="100"
-      isDecimalNum="0"
-    ></div>
-    <br />
-    <br />test 4 <br />
-    <div
+    <span
       class="counter"
       data-from="0"
-      data-to="52"
+      data-to="116"
       data-time="50"
       isDecimalNum="0"
-    ></div>
-    <span class="extraCounter"></span>
+    ></span
+    >,<span class="extraCounter" data="764"></span>,<span
+      class="extraCounter"
+      data="945"
+    ></span>
   </body>
 </html>
