@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Function to run the counter animation
-  let isIncreasing = true;
+  // let isIncreasing = true;
 
   const startCounter = (counter) => {
     const from = parseInt(counter.getAttribute('data-from'), 10);
@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let current = from;
     const range = to - from;
+
+    counter.dataset.isIncreasing = 'true';
 
     //To check if the counter value should be decreased
     const isNegative = () => {
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (current !== to) {
         setTimeout(step, time);
       } else {
-        isIncreasing = false;
+        counter.dataset.isIncreasing = 'false';
       }
     };
 
@@ -59,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Created an additional '000' counter to simulate faster counter animation
   const startExtraCounter = (extraCounter) => {
+    const mainCounterId = extraCounter.getAttribute('associatedId');
+    const mainCounter = document.getElementById(mainCounterId);
     const data = parseInt(extraCounter.getAttribute('data'), 10);
     let extraNum = 0;
 
@@ -71,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(extraStep, 1); // if you want to adjust animation speed for '000' counter, change this number.
 
-      if (!isIncreasing) {
+      if (!mainCounter || mainCounter.dataset.isIncreasing === 'false') {
         if (Number.isNaN(data) || data == 0) {
           extraCounter.textContent = '000';
         } else {
