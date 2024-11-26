@@ -15,7 +15,7 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ### Counter Class
 
-Example: ```<span id="counter1" class="counter" data-from="1000" data-to="0" data-time="100" isDecimalNum="0"></span>```
+Example: ```<span id="counter1" class="counter" data-from="0" data-to="916" data-time="100" isDecimalNum="0"></span>```
 
 - **id**: Use this to link to the Extra Counter Class. (no need to use it if you don't want to use the extra counter)
 - **data-from**: The starting number of the counter.
