@@ -1,6 +1,6 @@
 # Counter Function
 
-This app is crafted using HTML, CSS, and React to offer a streamlined note-taking experience. It allows you to effortlessly jot down titles and content for your notes. Additionally, you can categorize your notes under labels like Study, Work, Daily, or Play for organized storage. The app features a convenient sorting function, enabling you to arrange your notes either by Date or Category. Plus, it provides the flexibility to edit your notes whenever necessary.
+This JavaScript counting function provides smooth number animations for counters on your webpage. It offers customizable features such as decimal precision, counting pace, reverse counting, and support for negative numbers.
 
 ## Features
 
