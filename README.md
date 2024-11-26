@@ -1,6 +1,6 @@
 # Counter Function
 
-This JavaScript counting function provides smooth number animations for counters on your webpage. It offers customizable features such as decimal precision, counting pace, reverse counting, and support for negative numbers.
+This JavaScript counting function delivers smooth, dynamic number animations for your webpage counters. It comes with a range of customizable features, including adjustable decimal precision, flexible counting speed, reverse counting, and support for negative numbers. Additionally, it triggers animations when the counter enters the viewport, ensuring an engaging user experience as visitors scroll through your page.
 
 ## Features
 
