@@ -4,11 +4,13 @@ This app is crafted using HTML, CSS, and React to offer a streamlined note-takin
 
 ## Features
 
-- Smooth number animations for counters
-- Customizable decimal precision
-- Adjustable counting pace (animation speed)
-- Support for reverse counting
-- Handles negative numbers
+- ### Smooth number animations:
+  Provides a smooth, visually appealing animation as the counter counts up or down.
+- Customizable decimal precision: Allows you to specify the number of decimal places for the counter, making it suitable for both whole and decimal numbers.
+- Adjustable counting pace: The speed of the animation can be customized, letting you control how quickly the counter reaches its target.
+- Support for reverse counting: Enables the counter to count backwards, starting from a higher number and decreasing to a lower number.
+- Handles negative numbers: The counter can work with both positive and negative numbers, accommodating various scenarios.
+- Starts when the counter enters the viewport: The counter animation begins as soon as it becomes visible on the page, triggering when the user scrolls to it.
 
 ## How to start
 
