@@ -20,6 +20,7 @@ Example: ```<span id="counter1" class="counter" data-from="0" data-to="916" data
 - **id**: Use this to link to the Extra Counter Class. (no need to use it if you don't want to use the extra counter)
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
+- **data-time**: Sets the duration (in milliseconds) for each step of the counter animation, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
 - **isDecimalNum**: Determines whether the counter is a decimal number or not (0 = whole number, 1 = decimal number).
 - **exponent**: Specifies the number of decimal places for the counter.
 
