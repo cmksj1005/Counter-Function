@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // );
       // console.log('Increment:');
       // console.log(increment);
-      console.log('current:');
-      console.log(current);
+      // console.log('current:');
+      // console.log(current);
       // console.log('withoutZero:');
       // console.log(incrementWithoutZero);
       // console.log(incrementWithoutZeroInDecimal);
