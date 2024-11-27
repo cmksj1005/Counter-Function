@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let current = from;
 
-    // console.log(range);
     //To check if the counter value should be decreased
     const isNegative = () => {
       if (Math.sign(range) == -1) {
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       }
     };
-    // console.log(isNegative());
 
     const step = () => {
       if (Math.sign(range) == 0) {
@@ -30,32 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let increment;
 
-      //To check if the counter value should be decimal number
-      // if (isDecimalNum === 1) {
-      //   let increment;
-      //   if (isNegative()) {
-      //     increment = -Math.pow(10, -exponent);
-      //   } else {
-      //     increment = Math.pow(10, -exponent);
-      //   }
-      //   counter.textContent = parseFloat(current.toFixed(exponent));
-      //   current += increment;
-      // } else {
       increment = (range / speed) * 5;
       incrementWithoutZero = parseInt(
         increment.toString().replace(/0/g, '1'),
         10
       );
-      // incrementWithoutZeroInDecimal = parseFloat(
-      //   increment.toString().replace(/0/g, '1')
-      // );
-      // console.log('Increment:');
-      // console.log(increment);
-      // console.log('current:');
-      // console.log(current);
-      // console.log('withoutZero:');
-      // console.log(incrementWithoutZero);
-      // console.log(incrementWithoutZeroInDecimal);
 
       console.log(current.toFixed(exponent));
 
@@ -65,17 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         counter.textContent = Math.floor(current);
       }
 
-      // if (isDecimalNum == 1) {
-      //   if (isNegative()) {
-      //     if (increment > -1) {
-      //       current += increment.toFixed(exponent);
-      //     } else {
-      //       current += incrementWithoutZeroInDecimal.toFixed(exponent);
-      //     }
-      //   } else {
-      //     current += increment;
-      //   }
-      // } else {
       if (isNegative()) {
         if (increment > -10) {
           current += increment;
@@ -89,9 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
           current += incrementWithoutZero;
         }
       }
-      // }
-
-      // }
 
       if (isNegative()) {
         if (current <= to) {
