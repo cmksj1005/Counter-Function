@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const startCounter = (counter) => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
+    const isDecimalNum = parseInt(counter.getAttribute('isDecimalNum'), 10);
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
     const exponent = parseInt(counter.getAttribute('exponent'), 10);
     const range = to - from;
 
     let current = from;
-    let increment;
 
     // console.log(range);
     //To check if the counter value should be decreased
@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      let increment;
+
       //To check if the counter value should be decimal number
       // if (isDecimalNum === 1) {
       //   let increment;
@@ -44,10 +46,36 @@ document.addEventListener('DOMContentLoaded', () => {
         increment.toString().replace(/0/g, '1'),
         10
       );
-      console.log(increment);
+      // incrementWithoutZeroInDecimal = parseFloat(
+      //   increment.toString().replace(/0/g, '1')
+      // );
+      // console.log('Increment:');
+      // console.log(increment);
+      console.log('current:');
       console.log(current);
-      counter.textContent = Math.floor(current);
+      // console.log('withoutZero:');
+      // console.log(incrementWithoutZero);
+      // console.log(incrementWithoutZeroInDecimal);
 
+      console.log(current.toFixed(exponent));
+
+      if (isDecimalNum == 1) {
+        counter.textContent = current.toFixed(exponent);
+      } else {
+        counter.textContent = Math.floor(current);
+      }
+
+      // if (isDecimalNum == 1) {
+      //   if (isNegative()) {
+      //     if (increment > -1) {
+      //       current += increment.toFixed(exponent);
+      //     } else {
+      //       current += incrementWithoutZeroInDecimal.toFixed(exponent);
+      //     }
+      //   } else {
+      //     current += increment;
+      //   }
+      // } else {
       if (isNegative()) {
         if (increment > -10) {
           current += increment;
@@ -63,14 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // }
 
+      // }
+
       if (isNegative()) {
-        if (parseFloat(current.toFixed(exponent)) <= to) {
+        if (current <= to) {
           counter.textContent = to;
         } else {
           setTimeout(step, 1);
         }
       } else {
-        if (parseFloat(current.toFixed(exponent)) >= to) {
+        if (current >= to) {
           counter.textContent = to;
         } else {
           setTimeout(step, 1);
