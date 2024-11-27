@@ -1,20 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Function to run the counter animation
-  // let isIncreasing = true;
 
   const startCounter = (counter) => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
-    // const time = parseInt(counter.getAttribute('data-time'), 10);
-    const isDecimalNum = parseInt(counter.getAttribute('isDecimalNum'), 10);
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
     const exponent = parseInt(counter.getAttribute('exponent'), 10);
-    const range = Math.abs(to - from);
+    const range = to - from;
 
     let current = from;
+    let increment;
 
-    counter.dataset.isIncreasing = 'true';
-
+    // console.log(range);
     //To check if the counter value should be decreased
     const isNegative = () => {
       if (Math.sign(range) == -1) {
@@ -23,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       }
     };
+    // console.log(isNegative());
 
     const step = () => {
       if (Math.sign(range) == 0) {
@@ -31,77 +29,56 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       //To check if the counter value should be decimal number
-      if (isDecimalNum === 1) {
-        let increment;
-        if (isNegative() === true) {
-          increment = -Math.pow(10, -exponent);
+      // if (isDecimalNum === 1) {
+      //   let increment;
+      //   if (isNegative()) {
+      //     increment = -Math.pow(10, -exponent);
+      //   } else {
+      //     increment = Math.pow(10, -exponent);
+      //   }
+      //   counter.textContent = parseFloat(current.toFixed(exponent));
+      //   current += increment;
+      // } else {
+      increment = (range / speed) * 5;
+      incrementWithoutZero = parseInt(
+        increment.toString().replace(/0/g, '1'),
+        10
+      );
+      console.log(increment);
+      console.log(current);
+      counter.textContent = Math.floor(current);
+
+      if (isNegative()) {
+        if (increment > -10) {
+          current += increment;
         } else {
-          increment = Math.pow(10, -exponent);
+          current += incrementWithoutZero;
         }
-        counter.textContent = parseFloat(current.toFixed(exponent));
-        current += increment;
       } else {
-        if (isNegative() === true) {
-          increment = -(range / speed) * 5;
-          incrementWithoutZero = parseInt(
-            increment.toString().replace(/0/g, '1'),
-            10
-          );
-        } else {
-          increment = (range / speed) * 5;
-          incrementWithoutZero = parseInt(
-            increment.toString().replace(/0/g, '1'),
-            10
-          );
-        }
-
-        counter.textContent = Math.floor(current);
-
         if (increment < 10) {
           current += increment;
         } else {
           current += incrementWithoutZero;
         }
       }
+      // }
 
-      if (parseFloat(current.toFixed(exponent)) >= to) {
-        counter.dataset.isIncreasing = 'false';
-        counter.textContent = to;
+      if (isNegative()) {
+        if (parseFloat(current.toFixed(exponent)) <= to) {
+          counter.textContent = to;
+        } else {
+          setTimeout(step, 1);
+        }
       } else {
-        setTimeout(step, 1);
+        if (parseFloat(current.toFixed(exponent)) >= to) {
+          counter.textContent = to;
+        } else {
+          setTimeout(step, 1);
+        }
       }
     };
 
     step();
-  };
-
-  // Created an additional '000' counter to simulate faster counter animation
-  const startExtraCounter = (extraCounter) => {
-    const mainCounterId = extraCounter.getAttribute('associatedId');
-    const mainCounter = document.getElementById(mainCounterId);
-    const data = parseInt(extraCounter.getAttribute('data'), 10);
-    let extraNum = 0;
-
-    const extraStep = () => {
-      if (extraNum >= 999) {
-        extraNum = 0;
-      }
-      extraNum += 111;
-      extraCounter.textContent = extraNum;
-
-      setTimeout(extraStep, 1); // if you want to adjust animation speed for '000' counter, change this number.
-
-      if (!mainCounter || mainCounter.dataset.isIncreasing === 'false') {
-        if (Number.isNaN(data) || data == 0) {
-          extraCounter.textContent = '000';
-        } else {
-          extraCounter.textContent = data;
-        }
-        return;
-      }
-    };
-
-    extraStep();
   };
 
   // Function to check if the counter is in the viewport
@@ -118,24 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to start the counter when it's visible
   const startCountersOnScroll = () => {
     const counters = document.querySelectorAll('.counter');
-    const extraCounters = document.querySelectorAll('.extraCounter');
 
     counters.forEach((counter) => {
       // Check if the counter is in the viewport and hasn't started yet
       if (isInViewport(counter) && !counter.classList.contains('started')) {
         startCounter(counter);
         counter.classList.add('started'); // Mark as started to prevent rerun
-      }
-    });
-
-    extraCounters.forEach((extraCounter) => {
-      // Check if the extraCounter is in the viewport and hasn't started yet
-      if (
-        isInViewport(extraCounter) &&
-        !extraCounter.classList.contains('started')
-      ) {
-        startExtraCounter(extraCounter);
-        extraCounter.classList.add('started'); // Mark as started to prevent rerun
       }
     });
   };
