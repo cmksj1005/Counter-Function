@@ -15,20 +15,10 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ### Counter Class
 
-Example: ```<span id="counter1" class="counter" data-from="0" data-to="916" data-time="100" isDecimalNum="0"></span>```
+Example: ```<div class="counter" data-from="0" data-to="1.1537" data-speed="1000" isDecimalNum="1" exponent="3"></div>```
 
-- **id**: Use this to link to the Extra Counter Class. (no need to use it if you don't want to use the extra counter)
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
-- **data-time**: Sets the duration (in milliseconds) for each step of the counter animation, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
+- **data-speed**: Sets the duration (in milliseconds) for the counter, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
 - **isDecimalNum**: Determines whether the counter is a decimal number or not (0 = whole number, 1 = decimal number).
 - **exponent**: Specifies the number of decimal places for the counter. (no need to use it if isDecimalNum = 0)
-
-### Extra Counter Class
-
-Example: ```<span class="extraCounter" associatedId="counter1" data="945"></span>```
-
-The extraCounter class creates a secondary counter that simulates a faster counting animation, typically displayed alongside the main counter. It is specifically designed to handle large numbers (greater than 999) and updates the number rapidly in a looping fashion until the main counter finishes.
-
-- **associatedId**: Links the extra counter to the main counter using the class ID.
-- **data**: The number the extra counter will display once the main counter stops.
