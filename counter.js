@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // let isIncreasing = true;
 
   const startCounter = (counter) => {
-    const from = parseInt(counter.getAttribute('data-from'), 10);
-    const to = parseInt(counter.getAttribute('data-to'), 10);
-    const time = parseInt(counter.getAttribute('data-time'), 10);
+    const from = parseFloat(counter.getAttribute('data-from'));
+    const to = parseFloat(counter.getAttribute('data-to'));
+    // const time = parseInt(counter.getAttribute('data-time'), 10);
     const isDecimalNum = parseInt(counter.getAttribute('isDecimalNum'), 10);
+    const speed = parseInt(counter.getAttribute('data-speed'), 10);
     const exponent = parseInt(counter.getAttribute('exponent'), 10);
+    const range = Math.abs(to - from);
 
     let current = from;
-    const range = to - from;
 
     counter.dataset.isIncreasing = 'true';
 
@@ -37,22 +38,37 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           increment = Math.pow(10, -exponent);
         }
-        current += increment;
         counter.textContent = parseFloat(current.toFixed(exponent));
+        current += increment;
       } else {
         if (isNegative() === true) {
-          increment = -1;
+          increment = -(range / speed) * 5;
+          incrementWithoutZero = parseInt(
+            increment.toString().replace(/0/g, '1'),
+            10
+          );
         } else {
-          increment = 1;
+          increment = (range / speed) * 5;
+          incrementWithoutZero = parseInt(
+            increment.toString().replace(/0/g, '1'),
+            10
+          );
         }
-        current += increment;
-        counter.textContent = current;
+
+        counter.textContent = Math.floor(current);
+
+        if (increment < 10) {
+          current += increment;
+        } else {
+          current += incrementWithoutZero;
+        }
       }
 
-      if (current !== to) {
-        setTimeout(step, time);
-      } else {
+      if (parseFloat(current.toFixed(exponent)) >= to) {
         counter.dataset.isIncreasing = 'false';
+        counter.textContent = to;
+      } else {
+        setTimeout(step, 1);
       }
     };
 
