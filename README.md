@@ -15,10 +15,8 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ### Counter Class
 
-Example: ```<div class="counter" data-from="0" data-to="1.153" data-speed="1000" isDecimalNum="1" exponent="3"></div>```
+Example: ```<div class="counter" data-from="0" data-to="1.153" data-speed="1000"></div>```
 
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
 - **data-speed**: Sets the duration (in milliseconds) for the counter, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
-- **isDecimalNum**: Determines whether the counter is a decimal number or not (0 = whole number, 1 = decimal number).
-- **exponent**: Specifies the number of decimal places for the counter. (no need to use it if isDecimalNum = 0)
