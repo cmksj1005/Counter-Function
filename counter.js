@@ -4,12 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const startCounter = (counter) => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
-    const isDecimalNum = parseInt(counter.getAttribute('isDecimalNum'), 10);
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
-    const exponent = parseInt(counter.getAttribute('exponent'), 10);
     const range = to - from;
 
     let current = from;
+    let exponent = getDecimalPlaces(to);
+
+    //To check if the value of 'to' is Decimal number
+    function isDecimalNum(dataToValue) {
+      const num = parseFloat(dataToValue);
+      if (isNaN(num)) {
+        return 'Invalid input';
+      }
+      return !Number.isInteger(num); // Returns true if decimal, false if whole number
+    }
+
+    //To check the decimal places
+    function getDecimalPlaces(dataToValue) {
+      const num = parseFloat(dataToValue);
+      if (isNaN(num)) {
+        return 'Invalid input';
+      }
+      const decimalPart = num.toString().split('.')[1];
+      return decimalPart ? decimalPart.length : 0;
+    }
 
     //To check if the counter value should be decreased
     const isNegative = () => {
@@ -36,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log(current.toFixed(exponent));
 
-      if (isDecimalNum == 1) {
+      if (isDecimalNum(to)) {
         counter.textContent = current.toFixed(exponent);
       } else {
         counter.textContent = Math.floor(current);
