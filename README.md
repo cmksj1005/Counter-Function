@@ -15,7 +15,7 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ### Counter Class
 
-Example: ```<div class="counter" data-from="0" data-to="1.1537" data-speed="1000" isDecimalNum="1" exponent="3"></div>```
+Example: ```<div class="counter" data-from="0" data-to="1.153" data-speed="1000" isDecimalNum="1" exponent="3"></div>```
 
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
