@@ -43,10 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    function updateCounterText(value, addPlus) {
-      counter.textContent = addPlus ? value + '+' : value;
+    //if addPlus is true, + symbol will be appended at the end of the number when the text is updated
+    function updateCounterText(number, addPlus) {
+      counter.textContent = addPlus ? number + '+' : number;
     }
 
+    //Main method of the counter
     const step = () => {
       if (Math.sign(range) == 0) {
         updateCounterText(to, addPlus);
