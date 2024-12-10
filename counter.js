@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
+    const addPlus = counter.getAttribute('addPlus').toUpperCase() === 'TRUE';
+
     const range = to - from;
 
     let current = from;
@@ -40,7 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const step = () => {
       if (Math.sign(range) == 0) {
-        counter.textContent = to;
+        if (addPlus) {
+          counter.textContent = to + '+';
+        } else {
+          counter.textContent = to;
+        }
+
         return;
       }
 
@@ -55,9 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(current.toFixed(exponent));
 
       if (isDecimalNum(to)) {
-        counter.textContent = current.toFixed(exponent);
+        if (addPlus) {
+          counter.textContent = current.toFixed(exponent) + '+';
+        } else {
+          counter.textContent = current.toFixed(exponent);
+        }
       } else {
-        counter.textContent = Math.floor(current);
+        if (addPlus) {
+          counter.textContent = Math.floor(current) + '+';
+        } else {
+          counter.textContent = Math.floor(current);
+        }
       }
 
       if (isNegative()) {
@@ -76,13 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isNegative()) {
         if (current <= to) {
-          counter.textContent = to;
+          if (addPlus) {
+            counter.textContent = to + '+';
+          } else {
+            counter.textContent = to;
+          }
         } else {
           setTimeout(step, 1);
         }
       } else {
         if (current >= to) {
-          counter.textContent = to;
+          if (addPlus) {
+            counter.textContent = to + '+';
+          } else {
+            counter.textContent = to;
+          }
         } else {
           setTimeout(step, 1);
         }
