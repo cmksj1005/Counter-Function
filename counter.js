@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
-    const addPlus = counter.getAttribute('addPlus').toUpperCase() === 'TRUE';
+    const addPlus =
+      (counter.getAttribute('addPlus') &&
+        counter.getAttribute('addPlus').toUpperCase() === 'TRUE') ||
+      false;
 
     const range = to - from;
 
