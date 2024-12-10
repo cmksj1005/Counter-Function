@@ -15,8 +15,9 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ### Counter Class
 
-Example: ```<div class="counter" data-from="0" data-to="1.153" data-speed="1000"></div>```
+Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addPlus="true"></div>```
 
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
 - **data-speed**: Sets the duration (in milliseconds) for the counter, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
+- **addPlus**: If set to "true", appends a + symbol to the counter value during the animation. (If you don't want the + symbol, simply omit this attribute.)
