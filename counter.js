@@ -45,7 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //if addPlus is true, + symbol will be appended at the end of the number when the text is updated
     function updateCounterText(number, addPlus) {
-      counter.textContent = addPlus ? number + '+' : number;
+      const [integerPart, decimalPart] = number.toString().split('.');
+      const formattedInteger = new Intl.NumberFormat('en-CA').format(
+        integerPart
+      );
+      const formattedNumber = decimalPart
+        ? `${formattedInteger}.${decimalPart}`
+        : formattedInteger;
+      counter.textContent = addPlus ? formattedNumber + '+' : formattedNumber;
     }
 
     //Main method of the counter
