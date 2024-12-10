@@ -40,14 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    function updateCounterText(value, addPlus) {
+      counter.textContent = addPlus ? value + '+' : value;
+    }
+
     const step = () => {
       if (Math.sign(range) == 0) {
-        if (addPlus) {
-          counter.textContent = to + '+';
-        } else {
-          counter.textContent = to;
-        }
-
+        updateCounterText(to, addPlus);
         return;
       }
 
@@ -59,20 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         10
       );
 
-      console.log(current.toFixed(exponent));
-
       if (isDecimalNum(to)) {
-        if (addPlus) {
-          counter.textContent = current.toFixed(exponent) + '+';
-        } else {
-          counter.textContent = current.toFixed(exponent);
-        }
+        updateCounterText(current.toFixed(exponent), addPlus);
       } else {
-        if (addPlus) {
-          counter.textContent = Math.floor(current) + '+';
-        } else {
-          counter.textContent = Math.floor(current);
-        }
+        updateCounterText(Math.floor(current), addPlus);
       }
 
       if (isNegative()) {
@@ -91,21 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isNegative()) {
         if (current <= to) {
-          if (addPlus) {
-            counter.textContent = to + '+';
-          } else {
-            counter.textContent = to;
-          }
+          updateCounterText(to, addPlus);
         } else {
           setTimeout(step, 1);
         }
       } else {
         if (current >= to) {
-          if (addPlus) {
-            counter.textContent = to + '+';
-          } else {
-            counter.textContent = to;
-          }
+          updateCounterText(to, addPlus);
         } else {
           setTimeout(step, 1);
         }
