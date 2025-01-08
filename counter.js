@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
       counter.getAttribute('addDollar')?.toUpperCase() === 'TRUE';
     const addMillion =
       counter.getAttribute('addMillion')?.toUpperCase() === 'TRUE';
+    const addBillion =
+      counter.getAttribute('addBillion')?.toUpperCase() === 'TRUE';
 
     const range = to - from;
 
@@ -21,8 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkSign() {
       if (addPlus) sign = '+';
       else if (addDollar && addMillion) sign = '$M';
+      else if (addDollar && addBillion) sign = '$B';
       else if (addDollar) sign = '$';
       else if (addMillion) sign = 'M';
+      else if (addBillion) sign = 'B';
       else sign = false;
     }
 
@@ -66,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (sign == '$M') {
         counter.textContent = '$' + formattedNumber + 'M';
+      } else if (sign == '$B') {
+        counter.textContent = '$' + formattedNumber + 'B';
       } else if (sign == '$') {
         counter.textContent = sign + formattedNumber;
-      } else if (sign == 'M' || sign == '+') {
+      } else if (sign == 'M' || sign == 'B' || sign == '+') {
         counter.textContent = formattedNumber + sign;
       } else {
         counter.textContent = formattedNumber;
