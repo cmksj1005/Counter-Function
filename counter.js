@@ -5,10 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
-    const addPlus =
-      (counter.getAttribute('addPlus') &&
-        counter.getAttribute('addPlus').toUpperCase() === 'TRUE') ||
-      false;
+    const addSign = counter.getAttribute('addSign');
 
     const range = to - from;
 
@@ -43,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    //if addPlus is true, + symbol will be appended at the end of the number when the text is updated
-    function updateCounterText(number, addPlus) {
+    function updateCounterText(number, sign) {
       const [integerPart, decimalPart] = number.toString().split('.');
       const formattedInteger = new Intl.NumberFormat('en-CA').format(
         integerPart
@@ -52,13 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const formattedNumber = decimalPart
         ? `${formattedInteger}.${decimalPart}`
         : formattedInteger;
-      counter.textContent = addPlus ? formattedNumber + '+' : formattedNumber;
+
+      let result = formattedNumber;
+      if (sign.toUpperCase() == '$M') result = '$' + result + 'M';
+      if (sign == '$') result = '$' + result;
+      if (sign.toUpperCase() == 'M') result += 'M';
+      if (sign == '+') result += '+';
+
+      counter.textContent = result;
     }
 
     //Main method of the counter
     const step = () => {
       if (Math.sign(range) == 0) {
-        updateCounterText(to, addPlus);
+        updateCounterText(to, addSign);
         return;
       }
 
@@ -71,9 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       if (isDecimalNum(to)) {
-        updateCounterText(current.toFixed(exponent), addPlus);
+        updateCounterText(current.toFixed(exponent), addSign);
       } else {
-        updateCounterText(Math.floor(current), addPlus);
+        updateCounterText(Math.floor(current), addSign);
       }
 
       if (isNegative()) {
@@ -92,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isNegative()) {
         if (current <= to) {
-          updateCounterText(to, addPlus);
+          updateCounterText(to, addSign);
         } else {
           setTimeout(step, 1);
         }
       } else {
         if (current >= to) {
-          updateCounterText(to, addPlus);
+          updateCounterText(to, addSign);
         } else {
           setTimeout(step, 1);
         }
