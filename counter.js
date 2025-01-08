@@ -5,12 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const from = parseFloat(counter.getAttribute('data-from'));
     const to = parseFloat(counter.getAttribute('data-to'));
     const speed = parseInt(counter.getAttribute('data-speed'), 10);
-    const addSign = counter.getAttribute('addSign');
+    const addPlus = counter.getAttribute('addPlus')?.toUpperCase() === 'TRUE';
+    const addDollar =
+      counter.getAttribute('addDollar')?.toUpperCase() === 'TRUE';
+    const addMillion =
+      counter.getAttribute('addMillion')?.toUpperCase() === 'TRUE';
 
     const range = to - from;
 
     let current = from;
     let exponent = getDecimalPlaces(to);
+    let sign;
+
+    // To check whether the counter has additional sign.
+    function checkSign() {
+      if (addPlus) sign = '+';
+      else if (addDollar && addMillion) sign = '$M';
+      else if (addDollar) sign = '$';
+      else if (addMillion) sign = 'M';
+      else sign = false;
+    }
 
     //To check if the value of 'to' is Decimal number
     function isDecimalNum(dataToValue) {
@@ -40,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    //if addPlus is true, + symbol will be appended at the end of the number when the text is updated
     function updateCounterText(number, sign) {
       const [integerPart, decimalPart] = number.toString().split('.');
       const formattedInteger = new Intl.NumberFormat('en-CA').format(
@@ -49,19 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `${formattedInteger}.${decimalPart}`
         : formattedInteger;
 
-      let result = formattedNumber;
-      if (sign.toUpperCase() == '$M') result = '$' + result + 'M';
-      if (sign == '$') result = '$' + result;
-      if (sign.toUpperCase() == 'M') result += 'M';
-      if (sign == '+') result += '+';
-
-      counter.textContent = result;
+      if (sign == '$M') {
+        counter.textContent = '$' + formattedNumber + 'M';
+      } else if (sign == '$') {
+        counter.textContent = sign + formattedNumber;
+      } else if (sign == 'M' || sign == '+') {
+        counter.textContent = formattedNumber + sign;
+      } else {
+        counter.textContent = formattedNumber;
+      }
     }
 
     //Main method of the counter
     const step = () => {
+      checkSign(); // Check whether the counter has additional sign.
       if (Math.sign(range) == 0) {
-        updateCounterText(to, addSign);
+        updateCounterText(to, sign);
         return;
       }
 
@@ -74,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       if (isDecimalNum(to)) {
-        updateCounterText(current.toFixed(exponent), addSign);
+        updateCounterText(current.toFixed(exponent), sign);
       } else {
-        updateCounterText(Math.floor(current), addSign);
+        updateCounterText(Math.floor(current), sign);
       }
 
       if (isNegative()) {
@@ -95,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isNegative()) {
         if (current <= to) {
-          updateCounterText(to, addSign);
+          updateCounterText(to, sign);
         } else {
           setTimeout(step, 1);
         }
       } else {
         if (current >= to) {
-          updateCounterText(to, addSign);
+          updateCounterText(to, sign);
         } else {
           setTimeout(step, 1);
         }
