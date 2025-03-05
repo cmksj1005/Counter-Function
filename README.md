@@ -22,7 +22,6 @@ Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" 
 - **data-to**: The ending number of the counter.
 - **data-speed**: Sets the duration (in milliseconds) for the counter, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
 - **addDollar:** If set to "true", appends a '$' symbol at the biginning of the counter value during the animation. (If you don't want the $ symbol, simply omit this attribute.)
-- **addDollar:** If set to "true", appends a '$' symbol at the biginning of the counter value during the animation. (If you don't want the $ symbol, simply omit this attribute.)
 - **addPlus**: If set to "true", appends a '+' symbol at the end of the counter value during the animation. (If you don't want the + symbol, simply omit this attribute.)
 - **addMillion:** If set to "true", appends a 'M' symbol at the end of the counter value during the animation. (If you don't want the M symbol, simply omit this attribute.)
 - **addBillion:** If set to "true", appends a 'B' symbol at the end of the counter value during the animation. (If you don't want the B symbol, simply omit this attribute.)
