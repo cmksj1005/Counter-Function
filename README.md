@@ -12,9 +12,9 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 - **Starts when the counter enters the viewport:** The counter animation begins as soon as it becomes visible on the page, triggering when the user scrolls to it.
 - **Supports various prefixes and suffixes:** Allows the addition of symbols such as $, B (billion), M (million), +, -, and other custom signs to enhance readability and context.
 
-## How to start
+## How to use
 
-### Counter Class
+### Attributes of Counter Class
 
 Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
 
