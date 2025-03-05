@@ -14,10 +14,8 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ## How to use
 
-### Attributes
-
 Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
-
+### Attributes
 - **data-from**: The starting number of the counter.
 - **data-to**: The ending number of the counter.
 - **data-speed**: Sets the duration (in milliseconds) for the counter, controlling its speed. A value of 1 is the fastest, while higher values slow the animation down.
