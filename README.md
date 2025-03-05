@@ -15,7 +15,7 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 ## How to use
 
 1️⃣ Download the Counter Script
-- Download the counter.js file and add it to your project directory.
+- Download the counter.js file and add it to your project directory.<br>
 2️⃣ Include the Script in Your HTML
 - Make sure to include the counter.js file in your HTML before closing the <body> tag:
   <script src="counter.js"></script>
