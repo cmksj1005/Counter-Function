@@ -14,7 +14,7 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 
 ## How to use
 
-### Attributes of Counter Class
+### Attributes
 
 Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
 
