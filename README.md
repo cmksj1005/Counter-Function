@@ -17,8 +17,8 @@ This JavaScript counting function delivers smooth, dynamic number animations for
 ### 1️⃣ Download the Counter Script
 - Download the counter.js file and add it to your project directory.
 ### 2️⃣ Include the Script in Your HTML
-- Make sure to include the counter.js file in your HTML before closing the ```<body>``` tag:
-  ```<script src="counter.js"></script>```
+- Make sure to include the counter.js file in your HTML before closing the ```<head>``` tag:
+  ```<script src="counter.js" defer></script>```
 ### 3️⃣ Add the Counter Element
 - Use a ```<div>``` tag with the class "counter" and specify the necessary attributes.
 - Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
