@@ -21,7 +21,7 @@ This JavaScript counting function delivers smooth, dynamic number animations for
   ```<script src="counter.js"></script>```
 ### 3️⃣ Add the Counter Element
 - Use a ```<div>``` tag with the class "counter" and specify the necessary attributes.
-- Here’s an example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
+- Example: ```<div class="counter" data-from="0" data-to="1000" data-speed="1000" addDollar="true" addBillion="true"></div>```
 
 ### Attributes
 - **data-from**: The starting number of the counter.
